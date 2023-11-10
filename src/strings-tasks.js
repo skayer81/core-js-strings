@@ -69,7 +69,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  return value.length === 0 ? 0 : value[0];
+  return value.charAt(0);
 }
 
 /**
@@ -184,8 +184,10 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  return str
+    ? str.split('').reduce((sum, elem) => sum + elem.charCodeAt(), 0)
+    : 0;
 }
 
 /**
@@ -232,7 +234,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  return `${minutes.padEnd('0')}:${seconds.padEnd('0')}`;
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
+    2,
+    '0'
+  )}`;
 }
 
 /**
@@ -261,10 +266,7 @@ function reverseString(str) {
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
 function orderAlphabetically(str) {
-  return str
-    .split('')
-    .sort((a, b) => a - b)
-    .join('');
+  return str.split('').sort().join('');
 }
 
 /**
@@ -280,7 +282,7 @@ function orderAlphabetically(str) {
  *   containsSubstring('12345', '34') => true
  */
 function containsSubstring(str, substring) {
-  return str.indexOf(substring);
+  return str.includes(substring);
 }
 
 /**
@@ -325,7 +327,10 @@ function countVowels(str) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  return str.toLowerCase().split('').reverse().join('') === str.toLowerCase();
+  const str2 = str.replace(/[ .,?!]/g, '').toLowerCase();
+  return str2.split('').reverse().join('') === str2;
+  // const s = str.toLowerCase().split('').map(elem => )
+  // return str.toLowerCase().split('').reverse().join('') === str.toLowerCase();
 }
 
 /**
@@ -359,7 +364,7 @@ function findLongestWord(sentence) {
 function reverseWords(str) {
   return str
     .split(' ')
-    .map((elem) => elem.split('').reverse().join())
+    .map((elem) => elem.split('').reverse().join(''))
     .join(' ');
 }
 
@@ -374,8 +379,13 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return str
+    .split('')
+    .map((elem) =>
+      elem === elem.toUpperCase() ? elem.toLowerCase() : elem.toUpperCase()
+    )
+    .join('');
 }
 
 /**
