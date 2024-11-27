@@ -19,7 +19,7 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(value) {
+function getStringLength(value) x{
   return value ? value.length : 0;
 }
 
